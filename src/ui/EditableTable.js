@@ -122,10 +122,10 @@ export const EditableTable = (props) => {
                     marginRight: 8,
                 }}
             >
-              Save
+              Сохранить
             </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
+            <Popconfirm title="Уверены, что хотите отменить изменения?" onConfirm={cancel}>
+              <a>Отменить</a>
             </Popconfirm>
           </span>
                 ) : (
@@ -174,7 +174,7 @@ export const EditableTable = (props) => {
                     }}
                     onRow={(record, rowIndex) => {
                         return {
-                            onClick: event => {
+                            onClick: () => {
                                 dispatch(setEditingKeyRow(rowIndex + 1))
                                 dispatch(setStartPath(record.start))
                                 dispatch(setEndPath(record.end))
