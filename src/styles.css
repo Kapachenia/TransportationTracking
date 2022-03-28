@@ -1,0 +1,42 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+body {
+    margin: 0;
+}
+
+.wrapperApp {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.wrapperTable {
+    height: 100%;
+    width: 50%;
+    overflow: auto;
+    min-width: 300px;
+}
+
+.wrapperMap {
+    width: 50%;
+    height: 100%;
+    min-width: 400px;
+}
+
+.ant-table-cell {
+    cursor: pointer;
+}
+
+.selectRow {
+    background-color: #f8f6f6;
+}
+
+.button {
+    cursor: col-resize;
+    border: 0;
+    padding: 0;
+    width: 5px;
+}
