@@ -8,7 +8,7 @@ import {App} from "./ui/App";
 const rootElement = document.getElementById("root");
 ReactDOM.render(
     <StrictMode>
-        <HashRouter>
+        <HashRouter basename={'TransportationTracking'}>
             <Provider store={store}>
                 <App/>
             </Provider>
