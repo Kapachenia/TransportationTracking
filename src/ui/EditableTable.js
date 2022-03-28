@@ -4,7 +4,7 @@ import {Table, Popconfirm, Form, Typography, Button} from 'antd';
 import {StartSelect} from "./StartSelect";
 import {EndSelect} from "./EndSelect";
 import {useDispatch, useSelector} from "react-redux";
-import {setEditingKeyRow, setEndPath, setStartPath} from "../bll/createRoute";
+import {setEditingKeyRow, setEndPath, setEndPoint, setStartPath, setStartPoint} from "../bll/createRoute";
 import useWindowDimensions from "../hooks/useWindowDimensions/useWindowDimensions";
 
 const EditableCell = ({
@@ -54,6 +54,9 @@ export const EditableTable = (props) => {
     const {width} = useWindowDimensions();
     const widthL = (width / 2) / width * 100
     const result = props.position / width * 100
+    const [test1, setTest1] = useState()
+    const [test2, setTest2] = useState()
+
     let setWidthL
     result === 0 ? setWidthL = 0 : setWidthL = 50 - result
 
@@ -68,7 +71,11 @@ export const EditableTable = (props) => {
     };
 
     const cancel = () => {
-        setEditingKey(0);
+        dispatch(setStartPoint(test1, editingKey))
+        dispatch(setEndPoint(test2, editingKey))
+        console.log(editingKey)
+        setEditingKey(0)
+
     };
 
     const save = async (key) => {
@@ -98,13 +105,13 @@ export const EditableTable = (props) => {
         {
             title: 'Начало маршрута',
             dataIndex: 'start',
-            width: '35%',
+            width: '30%',
             editable: true,
         },
         {
             title: 'Пункт назначения',
             dataIndex: 'end',
-            width: '35%',
+            width: '30%',
             editable: true,
         },
         {
@@ -122,14 +129,19 @@ export const EditableTable = (props) => {
                     marginRight: 8,
                 }}
             >
-              Save
+              Сохранить
             </Typography.Link>
-            <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-              <a>Cancel</a>
+            <Popconfirm title="Сохранить изменения?" onConfirm={cancel}>
+              <a>Отменить</a>
             </Popconfirm>
           </span>
                 ) : (
-                    <Button disabled={editingKey !== 0} size={'small'} onClick={() => edit(record)}>
+                    <Button disabled={editingKey !== 0} size={'small'} onClick={() => {
+                        console.log(record)
+                        setTest1(record.start)
+                        setTest2(record.end)
+                        edit(record)
+                    }}>
                         Изменить
                     </Button>
                 );
@@ -174,7 +186,7 @@ export const EditableTable = (props) => {
                     }}
                     onRow={(record, rowIndex) => {
                         return {
-                            onClick: event => {
+                            onClick: () => {
                                 dispatch(setEditingKeyRow(rowIndex + 1))
                                 dispatch(setStartPath(record.start))
                                 dispatch(setEndPath(record.end))

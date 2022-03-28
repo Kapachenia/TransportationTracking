@@ -7,7 +7,7 @@ import "../styles.css";
 
 export const MapComponent = (props) => {
 
-    const position = [51.505, -0.09];
+    const position = [55.75, 37.61];
     const {width} = useWindowDimensions();
     const widthR = (width / 2) / width * 100
     const result = props.position / width * 100
@@ -16,7 +16,7 @@ export const MapComponent = (props) => {
 
     return (
         <div className={'wrapperMap'} style={{width: `${widthR + setWidthR}%`}}>
-            <MapContainer className={'wrapperMap'} center={position} zoom={13} style={{height: "100vh", width: `100%`}}>
+            <MapContainer className={'wrapperMap'} center={position} zoom={10} style={{height: "100vh", width: `100%`}}>
                 <TileLayer
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

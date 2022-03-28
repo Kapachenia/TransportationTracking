@@ -20,7 +20,7 @@ export const EndSelect = () => {
         <Select
             labelInValue
             defaultValue={{value: route[editingKey - 1].end}}
-            style={{width: 200}}
+            style={{width: 150}}
             onChange={handleChange}
         >
             {routs.map(m => <Option key={m.id} value={m.name}>{m.name}</Option>)}

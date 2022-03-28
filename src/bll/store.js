@@ -11,3 +11,6 @@ const rootReducer = combineReducers({
 export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(watcher)
+
+// @ts-ignore
+window.store = store; // for dev
